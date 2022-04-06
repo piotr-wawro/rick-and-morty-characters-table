@@ -1,0 +1,19 @@
+.container {
+    display: flex;
+    gap: 4px;
+}
+
+.dots {
+    width: 40px;
+    margin: 0;
+
+    align-self: center;
+    text-align: center;
+
+    font-size: 14px;
+    line-height: 18px;
+
+    color: var(--primary-anthracite-80);
+    font-family: 'Oswald', sans-serif;
+    font-weight: 500;
+}

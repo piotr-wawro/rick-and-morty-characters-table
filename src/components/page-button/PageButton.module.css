@@ -1,0 +1,29 @@
+.container {
+    box-sizing: border-box;
+    width: 40px;
+    height: 40px;
+
+    padding: 0;
+    border: 1px solid var(--secondary-blue-pale-40);
+    border-radius: 5px;
+
+    background-color: #fff;
+
+    box-shadow: 0px 2px 4px 0px var(--shadow);
+}
+
+.selectedContainer {
+    composes: container;
+    background-color: var(--secondary-blue-pale-10);
+}
+
+.text {
+    margin: 0;
+
+    font-size: 14px;
+    line-height: 18px;
+
+    color: var(--primary-anthracite-80);
+    font-family: 'Oswald', sans-serif;
+    font-weight: 500;
+}

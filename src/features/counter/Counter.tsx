@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
 import {
@@ -10,6 +10,7 @@ import {
   selectCount,
 } from './counterSlice';
 import styles from './Counter.module.css';
+import { useGetCharactersMutation } from 'api/rickAndMortyApi';
 
 export function Counter() {
   const count = useAppSelector(selectCount);
@@ -17,6 +18,13 @@ export function Counter() {
   const [incrementAmount, setIncrementAmount] = useState('2');
 
   const incrementValue = Number(incrementAmount) || 0;
+
+  const [trigger, result] = useGetCharactersMutation()
+
+  useEffect(() => {
+    console.log('result')
+    console.log(result)
+  }, [result])
 
   return (
     <div>
@@ -58,7 +66,7 @@ export function Counter() {
         </button>
         <button
           className={styles.button}
-          onClick={() => dispatch(incrementIfOdd(incrementValue))}
+          onClick={() => trigger({page: 1, status: '', species: ''})}
         >
           Add If Odd
         </button>

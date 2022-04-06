@@ -1,0 +1,142 @@
+.container {
+    width: 100%;
+    height: 83px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    border-bottom: 1px solid var(--secondary-blue-pale-15);
+}
+
+.container:last-of-type {
+    border-bottom: none;
+}
+
+.checkboxContainer {
+    width: 18px;
+    height: 18px;
+    padding: 24px;
+}
+
+input.checkbox {
+    width: 100%;
+    height: 100%;
+
+    margin: 0;
+}
+
+.dataContainer {
+    width: 100%;
+    height: 83px;
+
+    display: flex;
+    flex: 1 1 0;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 32px
+}
+
+.name {
+    display: flex;
+    flex-basis: 100%;
+    flex-direction: column;
+    gap: 4px;
+}
+
+p.name {
+    margin: 0;
+    font-size: 15px;
+    line-height: 19px;
+
+    color: var(--primary-anthracite-100);
+    font-family: 'Oswald', sans-serif;
+    font-weight: 500;
+}
+
+p.species {
+    margin: 0;
+    font-size: 15px;
+    line-height: 19px;
+
+    color: var(--primary-anthracite-80);
+    font-family: 'Oswald', sans-serif;
+    font-weight: 400;
+}
+
+.avatar {
+    flex-basis: 100%;
+}
+
+.origin {
+    display: flex;
+    flex-basis: 100%;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.originName {
+    margin: 0;
+    font-size: 15px;
+    line-height: 19px;
+
+    color: var(--primary-anthracite-100);
+    font-family: 'Oswald', sans-serif;
+    font-weight: 400;
+}
+
+.originType {
+    margin: 0;
+    font-size: 15px;
+    line-height: 19px;
+
+    color: var(--primary-anthracite-80);
+    font-family: 'Oswald', sans-serif;
+    font-weight: 400;
+}
+
+.episodes {
+    display: flex;
+    flex-basis: 100%;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.episode {
+    margin: 0;
+    font-size: 15px;
+    line-height: 19px;
+
+    color: var(--primary-anthracite-100);
+    font-family: 'Oswald', sans-serif;
+    font-weight: 400;
+}
+
+.status {
+    display: flex;
+    flex-basis: 100%;
+    flex-direction: row;
+    gap: 8px;
+}
+
+.iconContainer {
+    width: 18px;
+    height: 18px;
+}
+
+.icon {
+    width: 100%;
+    height: 100%;
+}
+
+.statusName {
+    margin: 0;
+    font-size: 14px;
+    line-height: 18px;
+
+    color: var(--primary-anthracite-100);
+    font-family: 'Oswald', sans-serif;
+    font-weight: 500;
+}
