@@ -51,7 +51,7 @@ function App() {
             </div>
 
             <div className={styles.pageSelector}>
-                <PageSelector currentPage={1} pageCount={42}/>
+                <PageSelector />
             </div>
         </div>
     );

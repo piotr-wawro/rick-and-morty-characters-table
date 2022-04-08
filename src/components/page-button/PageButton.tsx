@@ -4,7 +4,7 @@ export interface PageButtonProps {
     text?: string;
     image?: string;
     selected?: boolean;
-    onClick?: () => {};
+    onClick?: () => void;
 }
 
 const PageButton = ({text, image, selected, onClick}: PageButtonProps) => {

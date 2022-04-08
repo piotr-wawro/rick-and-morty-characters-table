@@ -1,10 +1,14 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import { rickAndMortyApi } from 'api/rickAndMortyApi';
 import counterReducer from '../features/counter/counterSlice';
+import filterReducer from './filterSlice';
+import pageSelectorReducer from './pageSelectorSlice'
 
 export const store = configureStore({
   reducer: {
     counter: counterReducer,
+    filter: filterReducer,
+    pageSelector: pageSelectorReducer,
     [rickAndMortyApi.reducerPath]: rickAndMortyApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>

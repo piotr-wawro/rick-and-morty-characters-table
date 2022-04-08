@@ -3,12 +3,14 @@ import arrow from 'icons/arrow.svg'
 
 export interface SelectProps {
     children?: React.ReactNode;
+    onChange?: (event: React.ChangeEvent<HTMLSelectElement>) => void;
+    value?: string;
 }
 
-const Select = ({children}: SelectProps) => {
+const Select = ({children, onChange, value}: SelectProps) => {
     return (
         <div className={styles.selectBox}>
-            <select>
+            <select onChange={onChange} value={value}>
                 {children}
             </select>
             <div className={styles.arrowBox}>

@@ -3,73 +3,93 @@ import styles from './PageSelector.module.css'
 
 import arrowLeft from 'icons/arrowLeft.svg'
 import arrowRight from 'icons/arrowRight.svg'
+import { useAppDispatch, useAppSelector } from 'app/hooks';
+import { selectCurrnetPage, selectPageCount, setCurrentPage } from 'app/pageSelectorSlice';
 
-export interface PageSelectorProps {
-    pageCount: number;
-    currentPage: number;
-}
+const PageSelector = () => {
+    const dispatch = useAppDispatch()
+    const currentPage = useAppSelector(selectCurrnetPage)
+    const pageCount = useAppSelector(selectPageCount)
+    const buttons: (number|null)[] = []
 
-const PageSelector = ({pageCount: pagesCount, currentPage}: PageSelectorProps) => {
+    const changePage = (page: number) => {
+        dispatch(setCurrentPage(page))
+    }
 
-    const buttons: JSX.Element[] = []
-
-    if(pagesCount < 8) {
-        for(let i = 1; i <= pagesCount; i++) {
-            (i === currentPage) ? 
-                buttons.push(<PageButton text={`${i}`} selected/>) :
-                buttons.push(<PageButton text={`${i}`} />)
+    const handlePreviousPageClick = () => {
+        if(currentPage !== 1) {
+            changePage(currentPage-1)
         }
     }
-    else if(pagesCount >= 8 && (currentPage <=2 || currentPage >= pagesCount-1)) {
-        for(let i = 1; i <= 3; i++) {
-            (i === currentPage) ? 
-                buttons.push(<PageButton text={`${i}`} selected/>) :
-                buttons.push(<PageButton text={`${i}`} />)
-        }
-        buttons.push(<p className={styles.dots}>...</p>)
-        for(let i = pagesCount-2; i <= pagesCount; i++) {
-            (i === currentPage) ? 
-                buttons.push(<PageButton text={`${i}`} selected/>) :
-                buttons.push(<PageButton text={`${i}`} />)
+
+    const handleNextPageClick = () => {
+        if(currentPage !== pageCount) {
+            changePage(currentPage+1)
         }
     }
-    else if(pagesCount >= 8 && currentPage === 3) {
-        for(let i = 1; i <= 4; i++) {
-            (i === currentPage) ? 
-                buttons.push(<PageButton text={`${i}`} selected/>) :
-                buttons.push(<PageButton text={`${i}`} />)
-        }
-        buttons.push(<p className={styles.dots}>...</p>)
-        buttons.push(<PageButton text={`${pagesCount-1}`} />)
-        buttons.push(<PageButton text={`${pagesCount}`} />)
-    }
-    else if(pagesCount >= 8 && currentPage === pagesCount-2) {
-        buttons.push(<PageButton text={`1`} />)
-        buttons.push(<PageButton text={`2`} />)
-        buttons.push(<p className={styles.dots}>...</p>)
-        for(let i = pagesCount-3; i <= pagesCount; i++) {
-            (i === currentPage) ? 
-                buttons.push(<PageButton text={`${i}`} selected/>) :
-                buttons.push(<PageButton text={`${i}`} />)
+
+    if(pageCount < 8) {
+        for(let i = 1; i <= pageCount; i++) {
+            buttons.push(i)
         }
     }
-    else {
-        buttons.push(<PageButton text={`1`} />)
-        buttons.push(<p className={styles.dots}>...</p>)
-        for(let i = currentPage-1; i <= currentPage+1; i++) {
-            (i === currentPage) ? 
-                buttons.push(<PageButton text={`${i}`} selected/>) :
-                buttons.push(<PageButton text={`${i}`} />)
+    else if(pageCount >= 8) {
+        buttons.push(1)
+
+        if(currentPage <= 2 || currentPage >= pageCount-1) {
+            for(let i = 2; i <= 3; i++) {
+                buttons.push(i)
+            }
+            buttons.push(null)
+            for(let i = pageCount-2; i < pageCount; i++) {
+                buttons.push(i)
+            }
         }
-        buttons.push(<p className={styles.dots}>...</p>)
-        buttons.push(<PageButton text={`${pagesCount}`} />)
+        else if(currentPage <= 4) {
+            for(let i = 2; i <= currentPage+1; i++) {
+                buttons.push(i)
+            }
+            buttons.push(null)
+            for(let i = pageCount+currentPage-4; i < pageCount; i++) {
+                buttons.push(i)
+            }
+        }
+        else if(currentPage >= pageCount-3) {
+            for(let i = 2; i <= currentPage-pageCount+4; i++) {
+                buttons.push(i)
+            }
+            buttons.push(null)
+            for(let i = (currentPage-1); i < pageCount; i++) {
+                buttons.push(i)
+            }
+        }
+        else {
+            buttons.push(null)
+            for(let i = currentPage-1; i <= currentPage+1; i++) {
+                buttons.push(i)
+            }
+            buttons.push(null)
+        }
+
+        buttons.push(pageCount)
     }
 
     return (
         <div className={styles.container}>
-            <PageButton image={arrowLeft} />
-            {buttons}
-            <PageButton image={arrowRight} />
+            <PageButton key={'left'} image={arrowLeft} onClick={handlePreviousPageClick} />
+            {buttons.map((value, index) => (
+                value ? (
+                    <PageButton
+                        key={index}
+                        text={`${value}`}
+                        selected={(value === currentPage) ? true : false}
+                        onClick={() => {changePage(value)}}
+                    />
+                ) : (
+                    <p className={styles.dots}>...</p>
+                )
+            ))}
+            <PageButton key={'right'} image={arrowRight} onClick={handleNextPageClick} />
         </div>
     )
 }
