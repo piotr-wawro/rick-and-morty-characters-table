@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { rickAndMortyApi } from 'api/rickAndMortyApi';
 import { RootState } from 'app/store';
 
 export interface PageSelectorState {
@@ -21,6 +22,13 @@ export const pageSelectorSlice = createSlice({
         setCurrentPage: (state: PageSelectorState, action: PayloadAction<number>) => {
             state.currentPage = action.payload;
         },
+    },
+    extraReducers: (builder) => {
+        builder.addMatcher(rickAndMortyApi.endpoints.getCharacters.matchFulfilled,
+            (state, action) => {
+                state.pageCount = action.payload.data.characters.info.pages
+            }
+        )
     }
 })
 

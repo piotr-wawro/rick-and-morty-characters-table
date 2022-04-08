@@ -1,9 +1,10 @@
+import { Character } from 'api/rickAndMortyApi'
 import TableHeader from 'components/table-header/TableHeader'
-import TableRow, { TableRowProps } from 'components/table-row/TableRow'
+import TableRow from 'components/table-row/TableRow'
 import styles from './Table.module.css'
 
 export interface TableProps {
-    data: TableRowProps[]
+    data: Character[]
 }
 
 const Table = ({data}: TableProps) => {
@@ -12,7 +13,7 @@ const Table = ({data}: TableProps) => {
             <TableHeader />
             {data.map((value, index) => {
                 return (
-                    <TableRow key={index} character={value.character} />
+                    <TableRow key={index} character={value} />
                 )
             })}
         </div>

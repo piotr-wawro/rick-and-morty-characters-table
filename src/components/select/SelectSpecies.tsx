@@ -15,7 +15,14 @@ const SelectSpecies = () => {
         <Select onChange={onChange} value={species}>
             <option value={Species.NONE}>Species</option>
             <option value={Species.HUMAN}>{Species.HUMAN}</option>
-            <option value={Species.ALIEN}>{Species.ALIEN}</option>
+            <option value={Species.HUMANOID}>{Species.HUMANOID}</option>
+            <option value={Species.UNKNOWN}>{Species.UNKNOWN}</option>
+            <option value={Species.POOPYBUTTHOLE}>{Species.POOPYBUTTHOLE}</option>
+            <option value={Species.MYTHOLOGICALCREATURE}>{Species.MYTHOLOGICALCREATURE}</option>
+            <option value={Species.ANIMAL}>{Species.ANIMAL}</option>
+            <option value={Species.CRONENBERG}>{Species.CRONENBERG}</option>
+            <option value={Species.DISEASE}>{Species.DISEASE}</option>
+            <option value={Species.ROBOT}>{Species.ROBOT}</option>
         </Select>
     )
 }

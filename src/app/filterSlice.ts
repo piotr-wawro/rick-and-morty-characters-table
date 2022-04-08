@@ -5,12 +5,43 @@ export enum Species {
     NONE = '',
     HUMAN = 'Human',
     ALIEN = 'Alien',
+    HUMANOID = 'Humanoid',
+    UNKNOWN = 'unknown',
+    POOPYBUTTHOLE = 'Poopybutthole',
+    MYTHOLOGICALCREATURE = 'Mythological Creature',
+    ANIMAL = 'Animal',
+    CRONENBERG = 'Cronenberg',
+    DISEASE = 'Disease',
+    ROBOT = 'Robot',
 }
 
 export enum Origin {
     NONE = '',
-    EARTH_C137 = 'Earth (C-137)',
-    ABADANGO = 'Abadango',
+    PLANET = 'Planet',
+    UNKNOWN = 'unknown',
+    CLUSTER = 'Cluster',
+    FANTASYTOWN = 'Fantasy town',
+    MICROVERSE = 'Microverse',
+    GAME = 'Game',
+    DREAM = 'Dream',
+    BOX = 'Box',
+    DWARFPLANET= 'Dwarf planet (Celestial Dwarf)',
+    MACHINE = 'Machine',
+    TV = 'TV',
+    DIMENSION = 'Dimension',
+    SPACESTATION = 'Space station',
+    QUASAR = 'Quasar',
+    LIQUID = 'Liquid',
+    MOUNT = 'Mount',
+    WOODS = 'Woods',
+    DIEGESIS = 'Diegesis',
+    NIGHTMARE = 'Nightmare',
+    ASTEROID = 'Asteroid',
+    REALITY = 'Reality',
+    HUMAN = 'Human',
+    HELL = 'Hell',
+    SPACETAHOE = 'Space Tahoe',
+    CONSCIOUSNESS = 'Consciousness',
 }
 
 export enum Status {
@@ -21,14 +52,14 @@ export enum Status {
 }
 
 export interface FilterState {
-    search: string;
+    name: string;
     species: Species;
     origin: Origin;
     status: Status;
 }
 
 const initialState: FilterState = {
-    search: '',
+    name: '',
     species: Species.NONE,
     origin: Origin.NONE,
     status: Status.NONE,
@@ -38,8 +69,8 @@ export const filterSlice = createSlice({
     name: 'filter',
     initialState,
     reducers: {
-        setSearch: (state: FilterState, action: PayloadAction<string>) => {
-            state.search = action.payload;
+        setName: (state: FilterState, action: PayloadAction<string>) => {
+            state.name = action.payload;
         },
         setSpecies: (state: FilterState, action: PayloadAction<Species>) => {
             state.species = action.payload;
@@ -53,10 +84,10 @@ export const filterSlice = createSlice({
     }
 })
 
-export const { setSearch, setSpecies, setOrigin, setStatus } = filterSlice.actions;
+export const { setName, setSpecies, setOrigin, setStatus } = filterSlice.actions;
 
 export const selectFilter = (state: RootState) => state.filter
-export const selectSearch = (state: RootState) => state.filter.search
+export const selectName = (state: RootState) => state.filter.name
 export const selectSpecies = (state: RootState) => state.filter.species
 export const selectOrigin = (state: RootState) => state.filter.origin
 export const selectStatus = (state: RootState) => state.filter.status

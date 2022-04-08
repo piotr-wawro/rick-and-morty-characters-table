@@ -2,14 +2,14 @@ import styles from './Search.module.css'
 import searchIcon from 'icons/search.svg'
 import { useAppDispatch } from 'app/hooks'
 import { useSelector } from 'react-redux'
-import { selectSearch, setSearch } from 'app/filterSlice'
+import { selectName, setName } from 'app/filterSlice'
 
 const Search = () => {
     const dispatch = useAppDispatch()
-    const search = useSelector(selectSearch)
+    const search = useSelector(selectName)
 
     const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        dispatch(setSearch(event.target.value))
+        dispatch(setName(event.target.value))
     }
 
     return (

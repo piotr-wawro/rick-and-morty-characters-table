@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import logo from './logo.svg';
 import { Counter } from './features/counter/Counter';
 import styles from './App.module.css';
@@ -20,12 +20,25 @@ import SelectOrigin from 'components/select/SelectOrigin';
 import SelectSpecies from 'components/select/SelectSpecies';
 import SelectStatus from 'components/select/SelectStatus';
 import Button from 'components/button/Button';
+import { useGetCharactersMutation } from 'api/rickAndMortyApi';
+import { useAppSelector } from 'app/hooks';
+import { selectFilter } from 'app/filterSlice';
+import { selectCurrnetPage } from 'app/pageSelectorSlice';
 
 function App() {
-    const data = [
-        { character: { name: 'Rick Sanchez', species: 'Human', image: per, episode: [{ name: 'Rick Potion #9' }, { name: 'Something Ricked This Way...' }], id: 1, location: { name: 'Citadel of Ricks', type: 'Space station' }, origin: { name: 'Earth (C-137)', type: 'Planet' }, status: 'alive' } },
-        { character: { name: 'Rick Sanchez', species: 'Human', image: per, episode: [{ name: 'Rick Potion #9' }, { name: 'Something Ricked This Way...' }], id: 1, location: { name: 'Citadel of Ricks', type: 'Space station' }, origin: { name: 'Earth (C-137)', type: 'Planet' }, status: 'alive' } },
-    ]
+    const [getCharactersQuery, getCharactersStatus] = useGetCharactersMutation()
+    const filter = useAppSelector(selectFilter)
+    const currentPage = useAppSelector(selectCurrnetPage)
+
+    useEffect(() => {
+        getCharactersQuery({
+            page: currentPage,
+            name: filter.name,
+            status: filter.status,
+            species: filter.species,
+        })
+    }, [filter, currentPage])
+
 
     return (
         <div className={styles.app}>
@@ -47,7 +60,9 @@ function App() {
             </div>
 
             <div className={styles.table}>
-                <Table data={data}/>
+                {getCharactersStatus.isSuccess && (
+                    <Table data={getCharactersStatus.data.data.characters.results}/>
+                )}
             </div>
 
             <div className={styles.pageSelector}>

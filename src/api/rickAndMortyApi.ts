@@ -6,24 +6,7 @@ export interface GetCharactersResult {
             info: {
                 pages: number,
             },
-            results: {
-                id: number,
-                name: string,
-                species: string,
-                image: string,
-                location: {
-                    name: string,
-                    type: string,
-                },
-                origin: {
-                    name: string,
-                    type: string,
-                },
-                episode: {
-                    name: string,
-                }
-                status: string,
-            }
+            results: Character[]
         }
     }
 }
@@ -72,7 +55,6 @@ query GetCharacters($page: Int, $name: String, $status: String, $species: String
         type
       }
       episode {
-        id
         name
       }
       status
