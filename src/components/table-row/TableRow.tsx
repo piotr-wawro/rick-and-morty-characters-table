@@ -6,14 +6,19 @@ import alive from 'icons/alive.svg'
 import unknown from 'icons/unknown.svg'
 import dead from 'icons/dead.svg'
 import { Origin, Status } from 'app/filterSlice'
+import { useAppDispatch, useAppSelector } from 'app/hooks'
+import { selectSelected, switchState } from 'app/selectionSlice'
+import { useEffect, useState } from 'react'
 
 export interface TableRowProps {
     character: Character
 }
 
 const TableRow = ({character}: TableRowProps) => {
-    let episode0 = ''
-    let episode1 = ''
+    const dispatch = useAppDispatch()
+    let checkboxChecked = !!useAppSelector(selectSelected)[character.id]
+    const [episode0, setEpisode0] = useState('')
+    const [episode1, setEpisode1] = useState('')
     let statusIcon = <></>
     let container = styles.container
     let statusName = styles.statusName
@@ -23,21 +28,23 @@ const TableRow = ({character}: TableRowProps) => {
     let originType = styles.originType
     let episode = styles.episode
 
-    if(character.episode.length <= 2) {
-        episode0 = character.episode[0]?.name
-        episode1 = character.episode[1]?.name
-    }
-    else {
-        let random0 = Math.floor(Math.random()*(character.episode.length-1))
-        let random1 = Math.floor(Math.random()*(character.episode.length-1))
-
-        while(random0 === random1) {
-            random1 = Math.floor(Math.random()*(character.episode.length-1))
+    useEffect(() => {
+        if(character.episode.length <= 2) {
+            setEpisode0(character.episode[0]?.name)
+            setEpisode1(character.episode[1]?.name)
         }
+        else {
+            let random0 = Math.floor(Math.random()*(character.episode.length-1))
+            let random1 = Math.floor(Math.random()*(character.episode.length-1))
 
-        episode0 = character.episode[random0].name
-        episode1 = character.episode[random1].name
-    }
+            while(random0 === random1) {
+                random1 = Math.floor(Math.random()*(character.episode.length-1))
+            }
+
+            setEpisode0(character.episode[random0].name)
+            setEpisode1(character.episode[random1].name)
+        }
+    }, [])
 
     if(character.status === 'Alive') {
         statusIcon = <img className={styles.icon} src={alive} />
@@ -56,10 +63,14 @@ const TableRow = ({character}: TableRowProps) => {
         episode = `${styles.episode} ${styles.grayEpisode}`
     }
 
+    const handleCheckboxClick = () => {
+        dispatch(switchState(character.id))
+    }
+
     return (
         <div className={container}>
             <div className={styles.checkboxContainer}>
-                <input className={styles.checkbox} type='checkbox' />
+                <input className={styles.checkbox} type='checkbox' onChange={handleCheckboxClick} checked={checkboxChecked} />
             </div>
 
             <div className={styles.dataContainer}>

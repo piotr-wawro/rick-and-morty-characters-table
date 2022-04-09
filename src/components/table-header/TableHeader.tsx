@@ -1,10 +1,15 @@
 import styles from './TableHeader.module.css'
 
-const TableHeader = () => {
+export interface TableHeaderProps {
+    onCheckboxClick: () => void,
+    checkboxChecked: boolean
+}
+
+const TableHeader = ({onCheckboxClick, checkboxChecked}: TableHeaderProps) => {
     return (
         <div className={styles.container}>
             <div className={styles.checkboxContainer}>
-                <input className={styles.checkbox} type='checkbox' />
+                <input className={styles.checkbox} type='checkbox' onChange={onCheckboxClick} checked={checkboxChecked} />
             </div>
 
             <div className={styles.headerContainer}>
