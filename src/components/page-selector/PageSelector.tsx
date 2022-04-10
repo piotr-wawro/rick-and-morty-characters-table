@@ -86,7 +86,7 @@ const PageSelector = () => {
                         onClick={() => {changePage(value)}}
                     />
                 ) : (
-                    <p className={styles.dots}>...</p>
+                    <p key={index} className={styles.dots}>...</p>
                 )
             ))}
             <PageButton key={'right'} image={arrowRight} onClick={handleNextPageClick} />
