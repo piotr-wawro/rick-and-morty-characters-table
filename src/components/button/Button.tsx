@@ -4,13 +4,14 @@ export interface ButtonProps {
     color: 'blue' | 'red';
     image: string;
     text: string;
+    onClick?: () => void;
 }
 
-const Button = ({color, image, text}: ButtonProps) => {
+const Button = ({color, image, text, onClick}: ButtonProps) => {
     const container = (color === 'blue') ? styles.blueContainer : styles.redContainer
 
     return (
-        <div className={container}>
+        <div className={container} onClick={onClick}>
             <div className={styles.iconBox}>
                 <img src={image} className={styles.icon}/>
             </div>

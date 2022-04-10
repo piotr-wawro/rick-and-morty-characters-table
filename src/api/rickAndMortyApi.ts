@@ -12,7 +12,7 @@ export interface GetCharactersResult {
 }
 
 export interface Character {
-    id: number,
+    id: string,
     name: string,
     species: string,
     image: string,

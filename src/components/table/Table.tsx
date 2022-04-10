@@ -1,4 +1,5 @@
 import { Character } from 'api/rickAndMortyApi'
+import { selectStatus } from 'app/filterSlice'
 import { useAppDispatch, useAppSelector } from 'app/hooks'
 import { multiSelect, multiUnselect, selectSelected } from 'app/selectionSlice'
 import TableHeader from 'components/table-header/TableHeader'
@@ -15,7 +16,7 @@ const Table = ({data}: TableProps) => {
     const dispatch = useAppDispatch()
 
     const handleHeaderCheckboxClick = () => {
-        let characterIds = data.map((element) => (element.id))
+        let characterIds = data.map((element) => (parseInt(element.id)))
 
         if(checkboxChecked) {
             dispatch(multiUnselect(characterIds))
@@ -27,7 +28,7 @@ const Table = ({data}: TableProps) => {
 
     const checkboxChecked = useMemo(() => {
         for(let element of data) {
-            if(selected[element.id] === undefined || selected[element.id] === false) {
+            if(selected[parseInt(element.id)] === undefined || selected[parseInt(element.id)] === false) {
                 return false
             }
         };

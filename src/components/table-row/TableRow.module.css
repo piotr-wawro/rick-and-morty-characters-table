@@ -137,6 +137,8 @@ p.graySpecies {
     flex-basis: 100%;
     flex-direction: column;
     gap: 8px;
+
+    overflow: hidden;
 }
 
 .episode {
@@ -147,6 +149,10 @@ p.graySpecies {
     color: var(--primary-anthracite-100);
     font-family: 'Oswald', sans-serif;
     font-weight: 400;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .grayEpisode {

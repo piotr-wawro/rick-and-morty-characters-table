@@ -4,6 +4,7 @@ import counterReducer from '../features/counter/counterSlice';
 import filterReducer from './filterSlice';
 import pageSelectorReducer from './pageSelectorSlice'
 import selectionReducer from './selectionSlice'
+import statusReducer from './statusSlice'
 
 export const store = configureStore({
   reducer: {
@@ -11,6 +12,7 @@ export const store = configureStore({
     filter: filterReducer,
     pageSelector: pageSelectorReducer,
     selection: selectionReducer,
+    status: statusReducer,
     [rickAndMortyApi.reducerPath]: rickAndMortyApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>

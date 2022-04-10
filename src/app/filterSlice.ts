@@ -25,7 +25,7 @@ export enum Origin {
     GAME = 'Game',
     DREAM = 'Dream',
     BOX = 'Box',
-    DWARFPLANET= 'Dwarf planet (Celestial Dwarf)',
+    DWARFPLANET= 'Dwarf planet',
     MACHINE = 'Machine',
     TV = 'TV',
     DIMENSION = 'Dimension',

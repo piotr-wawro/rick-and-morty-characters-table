@@ -9,6 +9,7 @@ import { Origin, Status } from 'app/filterSlice'
 import { useAppDispatch, useAppSelector } from 'app/hooks'
 import { selectSelected, switchState } from 'app/selectionSlice'
 import { useEffect, useState } from 'react'
+import { selectOverrideStatus } from 'app/statusSlice'
 
 export interface TableRowProps {
     character: Character
@@ -16,7 +17,8 @@ export interface TableRowProps {
 
 const TableRow = ({character}: TableRowProps) => {
     const dispatch = useAppDispatch()
-    let checkboxChecked = !!useAppSelector(selectSelected)[character.id]
+    const status = useAppSelector(selectOverrideStatus)
+    let checkboxChecked = !!useAppSelector(selectSelected)[parseInt(character.id)]
     const [episode0, setEpisode0] = useState('')
     const [episode1, setEpisode1] = useState('')
     let statusIcon = <></>
@@ -27,6 +29,11 @@ const TableRow = ({character}: TableRowProps) => {
     let originName = (character.origin.name === Origin.UNKNOWN) ? styles.originNameUnknown : styles.originName
     let originType = styles.originType
     let episode = styles.episode
+    let characterStatus = character.status
+
+    if(status[parseInt(character.id)] !== undefined) {
+        characterStatus = status[parseInt(character.id)]
+    }
 
     useEffect(() => {
         if(character.episode.length <= 2) {
@@ -46,14 +53,14 @@ const TableRow = ({character}: TableRowProps) => {
         }
     }, [])
 
-    if(character.status === 'Alive') {
+    if(characterStatus === 'Alive') {
         statusIcon = <img className={styles.icon} src={alive} />
     }
-    else if(character.status === 'unknown') {
+    else if(characterStatus === 'unknown') {
         statusIcon = <img className={styles.icon} src={unknown} />
         statusName = styles.statusUnknown
     }
-    else if(character.status === 'Dead') {
+    else if(characterStatus === 'Dead') {
         statusIcon = <img className={styles.icon} src={dead} />
         container = `${styles.container} ${styles.grayContainer}`
         name = `${styles.name} ${styles.grayName}`
@@ -64,7 +71,7 @@ const TableRow = ({character}: TableRowProps) => {
     }
 
     const handleCheckboxClick = () => {
-        dispatch(switchState(character.id))
+        dispatch(switchState(parseInt(character.id)))
     }
 
     return (
@@ -97,7 +104,7 @@ const TableRow = ({character}: TableRowProps) => {
                     <div className={styles.iconContainer}>
                         {statusIcon}
                     </div>
-                    <p className={statusName}>{character.status}</p>
+                    <p className={statusName}>{characterStatus}</p>
                 </div>
             </div>
         </div>
