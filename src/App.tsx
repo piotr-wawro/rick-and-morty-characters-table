@@ -98,8 +98,8 @@ function App() {
             </div>
 
             <div className={styles.tableBox}>
-                {getCharacters.isSuccess && (
-                    <Table data={getCharacters.data.data.characters?.results || []} />
+                {!getCharacters.isFetching && (
+                    <Table data={getCharacters.data?.data.characters?.results || []} />
                 )}
             </div>
 
