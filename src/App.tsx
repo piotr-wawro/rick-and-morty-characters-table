@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import styles from './App.module.css';
 
 import edit from 'icons/edit.svg'
@@ -12,7 +12,7 @@ import SelectSpecies from 'components/select/SelectSpecies';
 import SelectStatus from 'components/select/SelectStatus';
 import Button from 'components/button/Button';
 import ChangeStatusBox from 'components/change-status-modal/ChangeStatusModal';
-import { useGetCharactersMutation } from 'api/rickAndMortyApi';
+import { useGetCharactersQuery } from 'api/rickAndMortyApi';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { selectFilter, selectStatus, Status } from 'app/filterSlice';
 import { selectCurrnetPage } from 'app/pageSelectorSlice';
@@ -21,21 +21,17 @@ import { overrideStatus } from 'app/statusSlice';
 
 function App() {
     const dispatch = useAppDispatch()
-    const [getCharactersQuery, getCharactersStatus] = useGetCharactersMutation()
     const filter = useAppSelector(selectFilter)
     const currentPage = useAppSelector(selectCurrnetPage)
     const selected = useAppSelector(selectSelected)
     const status = useAppSelector(selectStatus)
     const [changeStatusVisible, setChangeStatusVisible] = useState(false)
-
-    useEffect(() => {
-        getCharactersQuery({
-            page: currentPage,
-            name: filter.name,
-            status: filter.status,
-            species: filter.species,
-        })
-    }, [filter, currentPage])
+    const getCharacters = useGetCharactersQuery({
+        page: currentPage,
+        name: filter.name,
+        status: filter.status,
+        species: filter.species,
+    })
 
     const selectedCharactersIds = useMemo(() => {
         let tmp = Object.keys(selected).filter(key => selected[parseInt(key)] === true)
@@ -47,8 +43,8 @@ function App() {
             return Status.NONE
         }
         else if(status[selectedCharactersIds[0]] === undefined) {
-            return (getCharactersStatus.data?.data.characters.results.find(e => parseInt(e.id) === selectedCharactersIds[0])?.status) ?
-            getCharactersStatus.data.data.characters.results.find(e => parseInt(e.id) === selectedCharactersIds[0])?.status as Status:
+            return (getCharacters.data?.data.characters.results.find(e => parseInt(e.id) === selectedCharactersIds[0])?.status) ?
+            getCharacters.data.data.characters.results.find(e => parseInt(e.id) === selectedCharactersIds[0])?.status as Status:
             Status.NONE
         }
         else {
@@ -93,8 +89,8 @@ function App() {
             </div>
 
             <div className={styles.tableBox}>
-                {getCharactersStatus.isSuccess && (
-                    <Table data={getCharactersStatus.data.data.characters.results} />
+                {getCharacters.isSuccess && (
+                    <Table data={getCharacters.data.data.characters.results} />
                 )}
             </div>
 

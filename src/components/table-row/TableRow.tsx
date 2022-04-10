@@ -57,7 +57,7 @@ const TableRow = ({character}: TableRowProps) => {
             setEpisode0(character.episode[random0].name)
             setEpisode1(character.episode[random1].name)
         }
-    }, [])
+    }, [character])
 
     if(characterStatus === 'Alive') {
         statusIcon = <img className={styles.icon} src={alive} />

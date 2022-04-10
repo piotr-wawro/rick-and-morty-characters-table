@@ -66,8 +66,9 @@ query GetCharacters($page: Int, $name: String, $status: String, $species: String
 export const rickAndMortyApi = createApi({
     reducerPath: 'rickAndMortyApi',
     baseQuery: fetchBaseQuery({ baseUrl: 'https://rickandmortyapi.com/graphql' }),
+    tagTypes: ['Characters'],
     endpoints: (builder) => ({
-        getCharacters: builder.mutation<GetCharactersResult, Filter>({
+        getCharacters: builder.query<GetCharactersResult, Filter>({
             query: (filter: Filter) => {
                 return ({
                     url: '',
@@ -78,10 +79,11 @@ export const rickAndMortyApi = createApi({
                     },
                 })
             },
+            providesTags: ['Characters'],
         }),
     }),
 })
 
 export const {
-    useGetCharactersMutation,
+    useGetCharactersQuery,
 } = rickAndMortyApi
