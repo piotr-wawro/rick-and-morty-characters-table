@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/rick-and-morty-characters-table/static/css/main.b9d58a40.css",
-    "main.js": "/rick-and-morty-characters-table/static/js/main.c3166bc5.js",
+    "main.js": "/rick-and-morty-characters-table/static/js/main.6ec82de6.js",
     "static/media/remove.svg": "/rick-and-morty-characters-table/static/media/remove.ef08dd4675f7cb56752f11a7b5e65fdf.svg",
     "static/media/edit.svg": "/rick-and-morty-characters-table/static/media/edit.9c2b262339bdc65b14a8c442a27950ef.svg",
     "static/media/unknown.svg": "/rick-and-morty-characters-table/static/media/unknown.afbe511839fac72cbcc4168b06459675.svg",
@@ -13,10 +13,10 @@
     "static/media/arrowLeft.svg": "/rick-and-morty-characters-table/static/media/arrowLeft.20949e0512f3290899d0964a5fc372b7.svg",
     "static/media/arrow.svg": "/rick-and-morty-characters-table/static/media/arrow.b61f45f8e5657e9e515aafa679ae0ad0.svg",
     "main.b9d58a40.css.map": "/rick-and-morty-characters-table/static/css/main.b9d58a40.css.map",
-    "main.c3166bc5.js.map": "/rick-and-morty-characters-table/static/js/main.c3166bc5.js.map"
+    "main.6ec82de6.js.map": "/rick-and-morty-characters-table/static/js/main.6ec82de6.js.map"
   },
   "entrypoints": [
     "static/css/main.b9d58a40.css",
-    "static/js/main.c3166bc5.js"
+    "static/js/main.6ec82de6.js"
   ]
 }
