@@ -5,10 +5,12 @@ export interface ButtonProps {
     image: string;
     text: string;
     onClick?: () => void;
+    active?: boolean;
 }
 
-const Button = ({color, image, text, onClick}: ButtonProps) => {
-    const container = (color === 'blue') ? styles.blueContainer : styles.redContainer
+const Button = ({color, image, text, onClick, active = true}: ButtonProps) => {
+    let container = (color === 'blue') ? styles.blueContainer : styles.redContainer
+    container += active ? '' : ` ${styles.unactive}`
 
     return (
         <div className={container} onClick={onClick}>

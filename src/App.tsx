@@ -25,7 +25,7 @@ function App() {
     const currentPage = useAppSelector(selectCurrnetPage)
     const selected = useAppSelector(selectSelected)
     const status = useAppSelector(selectStatus)
-    const [changeStatusVisible, setChangeStatusVisible] = useState(false)
+    const [modalVisible, setModalVisible] = useState(false)
     const getCharacters = useGetCharactersQuery({
         page: currentPage,
         name: filter.name,
@@ -54,16 +54,16 @@ function App() {
 
     return (
         <div className={styles.app}>
-            {changeStatusVisible &&
+            {modalVisible &&
                 <ChangeStatusBox
-                    onCancle={() => {setChangeStatusVisible(false)}}
+                    onCancle={() => {setModalVisible(false)}}
 
                     onConfirm={(status: Status) => {
                         if(selectedCharactersIds[0]) {
                             dispatch(overrideStatus({id: selectedCharactersIds[0], status: status}))
                             dispatch(switchState(selectedCharactersIds[0]))
                         }
-                        setChangeStatusVisible(false)
+                        setModalVisible(false)
                     }}
 
                     currnetStatus={selectedCharacterStatus}
@@ -82,10 +82,18 @@ function App() {
                     </div>
                 </div>
                 <div className={styles.buttonBox}>
-                    {selectedCharactersIds.length < 2 && (
-                        <Button color='blue' image={edit} text='Change status' onClick={() => {setChangeStatusVisible(true)}}/>
-                    )}
-                    <Button color='red' image={remove} text='Remove characters' />
+                    <Button
+                        color='blue'
+                        image={edit}
+                        text='Change status'
+                        onClick={() => {setModalVisible(true)}}
+                        active={selectedCharactersIds.length < 2}
+                    />
+                    <Button
+                        color='red'
+                        image={remove}
+                        text='Remove characters'
+                    />
                 </div>
             </div>
 
