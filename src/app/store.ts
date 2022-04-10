@@ -3,14 +3,14 @@ import { rickAndMortyApi } from 'api/rickAndMortyApi';
 import filterReducer from './filterSlice';
 import pageSelectorReducer from './pageSelectorSlice'
 import selectionReducer from './selectionSlice'
-import statusReducer from './statusSlice'
+import statusOverrideReducer from './statusOverrideSlice'
 
 export const store = configureStore({
   reducer: {
     filter: filterReducer,
     pageSelector: pageSelectorReducer,
     selection: selectionReducer,
-    status: statusReducer,
+    status: statusOverrideReducer,
     [rickAndMortyApi.reducerPath]: rickAndMortyApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>

@@ -16,8 +16,8 @@ import { useGetCharactersQuery } from 'api/rickAndMortyApi';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { selectFilter, selectStatus, Status } from 'app/filterSlice';
 import { selectCurrnetPage } from 'app/pageSelectorSlice';
-import { selectSelected } from 'app/selectionSlice';
-import { overrideStatus } from 'app/statusSlice';
+import { selectSelected, switchState } from 'app/selectionSlice';
+import { overrideStatus } from 'app/statusOverrideSlice';
 
 function App() {
     const dispatch = useAppDispatch()
@@ -61,6 +61,7 @@ function App() {
                     onConfirm={(status: Status) => {
                         if(selectedCharactersIds[0]) {
                             dispatch(overrideStatus({id: selectedCharactersIds[0], status: status}))
+                            dispatch(switchState(selectedCharactersIds[0]))
                         }
                         setChangeStatusVisible(false)
                     }}

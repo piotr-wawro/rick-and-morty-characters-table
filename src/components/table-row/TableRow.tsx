@@ -5,11 +5,11 @@ import styles from './TableRow.module.css'
 import alive from 'icons/alive.svg'
 import unknown from 'icons/unknown.svg'
 import dead from 'icons/dead.svg'
-import { Origin, Status } from 'app/filterSlice'
+import { Origin } from 'app/filterSlice'
 import { useAppDispatch, useAppSelector } from 'app/hooks'
 import { selectSelected, switchState } from 'app/selectionSlice'
 import { useEffect, useState } from 'react'
-import { selectOverrideStatus } from 'app/statusSlice'
+import { selectOverrideStatus } from 'app/statusOverrideSlice'
 
 export interface TableRowProps {
     character: Character
