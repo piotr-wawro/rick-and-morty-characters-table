@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { rickAndMortyApi } from 'api/rickAndMortyApi';
 import { RootState } from 'app/store';
+import { setName, setOrigin, setSpecies, setStatus } from './filterSlice';
 
 export interface PageSelectorState {
     pageCount: number,
@@ -8,8 +9,8 @@ export interface PageSelectorState {
 }
 
 const initialState: PageSelectorState = {
-    pageCount: 10,
-    currentPage: 1,
+    pageCount: 0,
+    currentPage: 0,
 }
 
 export const pageSelectorSlice = createSlice({
@@ -24,7 +25,20 @@ export const pageSelectorSlice = createSlice({
         },
     },
     extraReducers: (builder) => {
-        builder.addMatcher(rickAndMortyApi.endpoints.getCharacters.matchFulfilled,
+        builder
+        .addCase(setName, (state, action) => {
+            state.currentPage = 1
+        })
+        .addCase(setSpecies, (state, action) => {
+            state.currentPage = 1
+        })
+        .addCase(setOrigin, (state, action) => {
+            state.currentPage = 1
+        })
+        .addCase(setStatus, (state, action) => {
+            state.currentPage = 1
+        })
+        .addMatcher(rickAndMortyApi.endpoints.getCharacters.matchFulfilled,
             (state, action) => {
                 state.pageCount = action.payload.data.characters.info.pages
             }
