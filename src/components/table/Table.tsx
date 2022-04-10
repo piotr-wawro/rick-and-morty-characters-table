@@ -1,5 +1,4 @@
 import { Character } from 'api/rickAndMortyApi'
-import { selectStatus } from 'app/filterSlice'
 import { useAppDispatch, useAppSelector } from 'app/hooks'
 import { multiSelect, multiUnselect, selectSelected } from 'app/selectionSlice'
 import TableHeader from 'components/table-header/TableHeader'

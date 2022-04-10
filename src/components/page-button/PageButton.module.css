@@ -10,6 +10,16 @@
     background-color: #fff;
 
     box-shadow: 0px 2px 4px 0px var(--shadow);
+
+    cursor: pointer;
+}
+
+.container:hover {
+    background-color: var(--secondary-blue-pale-15);
+}
+
+.container:active {
+    background-color: var(--secondary-blue-pale-30);
 }
 
 .selectedContainer {

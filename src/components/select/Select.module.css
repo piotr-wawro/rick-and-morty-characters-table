@@ -12,11 +12,12 @@
     border-radius: 5px;
     outline: none;
 
-    font-family: 'Oswald', sans-serif;
-    font-weight: 400;
     font-size: 14px;
     line-height: 18px;
+
+    font-family: 'Oswald', sans-serif;
     color: var(--primary-anthracite-80);
+    font-weight: 400;
 
     appearance: none;
 }

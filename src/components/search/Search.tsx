@@ -1,27 +1,43 @@
 import styles from './Search.module.css'
 import searchIcon from 'icons/search.svg'
 import { useAppDispatch } from 'app/hooks'
-import { useSelector } from 'react-redux'
-import { selectName, setName } from 'app/filterSlice'
+import { setName } from 'app/filterSlice'
+import { useState } from 'react'
 
 const Search = () => {
+    const [searchValue, setSearchValue] = useState('')
     const dispatch = useAppDispatch()
-    const search = useSelector(selectName)
 
-    const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        dispatch(setName(event.target.value))
+    const updateFilterName = () => {
+        dispatch(setName(searchValue))
+    }
+
+    const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setSearchValue(event.target.value)
+    }
+
+    const handleOnBlur = (event: React.FocusEvent<HTMLInputElement, Element>) => {
+        updateFilterName()
+    }
+
+    const handleOnKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+        if(event.key === 'Enter') {
+            updateFilterName()
+        }
     }
 
     return (
         <div className={styles.container}>
             <input
-                className={styles.text}
+                className={styles.searchInput}
                 type='text'
                 placeholder='Search'
-                onChange={onChange}
-                value={search}
+                onChange={handleOnChange}
+                value={searchValue}
+                onBlur={handleOnBlur}
+                onKeyDown={handleOnKeyDown}
             />
-            <div className={styles.iconBox}>
+            <div className={styles.iconBox} onClick={updateFilterName}>
                 <img src={searchIcon} className={styles.icon}/>
             </div>
         </div>

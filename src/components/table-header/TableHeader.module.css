@@ -8,7 +8,7 @@
 
     border-bottom: 1px solid var(--secondary-blue-pale-30);
 
-    background-color: #fff;
+    background-color: var(--primary-white);
 }
 
 .checkboxContainer {
@@ -29,11 +29,9 @@ input.checkbox {
     height: 42px;
 
     display: flex;
-    flex: 1 1 0;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-
     gap: 32px
 }
 

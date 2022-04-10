@@ -18,22 +18,28 @@ export interface TableRowProps {
 const TableRow = ({character}: TableRowProps) => {
     const dispatch = useAppDispatch()
     const status = useAppSelector(selectOverrideStatus)
-    let checkboxChecked = !!useAppSelector(selectSelected)[parseInt(character.id)]
-    const [episode0, setEpisode0] = useState('')
-    const [episode1, setEpisode1] = useState('')
-    let statusIcon = <></>
+
+    const characterStatus = (status[parseInt(character.id)] !== undefined) ?
+                            status[parseInt(character.id)] :
+                            character.status
+
     let container = styles.container
-    let statusName = styles.statusName
+    let checkboxChecked = !!useAppSelector(selectSelected)[parseInt(character.id)]
+
     let name = styles.name
     let species = styles.species
-    let originName = (character.origin.name === Origin.UNKNOWN) ? styles.originNameUnknown : styles.originName
-    let originType = styles.originType
-    let episode = styles.episode
-    let characterStatus = character.status
 
-    if(status[parseInt(character.id)] !== undefined) {
-        characterStatus = status[parseInt(character.id)]
-    }
+    let originType = styles.originType
+    let originName = (character.origin.name === Origin.UNKNOWN) ?
+                     styles.originNameUnknown :
+                     styles.originName
+
+    let episode = styles.episode
+    const [episode0, setEpisode0] = useState('')
+    const [episode1, setEpisode1] = useState('')
+
+    let statusIcon = <></>
+    let statusName = styles.statusName
 
     useEffect(() => {
         if(character.episode.length <= 2) {
@@ -65,7 +71,9 @@ const TableRow = ({character}: TableRowProps) => {
         container = `${styles.container} ${styles.grayContainer}`
         name = `${styles.name} ${styles.grayName}`
         species = `${styles.species} ${styles.graySpecies}`
-        originName = (character.origin.name === Origin.UNKNOWN) ? `${styles.originNameUnknown} ${styles.grayOriginNameUnknown}` : `${styles.originName} ${styles.grayOriginName}`
+        originName = (character.origin.name === Origin.UNKNOWN) ?
+                     `${styles.originNameUnknown} ${styles.grayOriginNameUnknown}` :
+                     `${styles.originName} ${styles.grayOriginName}`
         originType = `${styles.originType} ${styles.grayOriginType}`
         episode = `${styles.episode} ${styles.grayEpisode}`
     }
@@ -86,7 +94,7 @@ const TableRow = ({character}: TableRowProps) => {
                     <p className={species}>{character.species}</p>
                 </div>
 
-                <div className={styles.avatar}>
+                <div className={styles.avatarBox}>
                     <Avatar image={character.image} />
                 </div>
 
@@ -95,7 +103,7 @@ const TableRow = ({character}: TableRowProps) => {
                     <p className={originType}>{character.origin.type}</p>
                 </div>
 
-                <div className={styles.episodes}>
+                <div className={styles.episodeBox}>
                     <p className={episode}>{episode0}</p>
                     <p className={episode}>{episode1}</p>
                 </div>

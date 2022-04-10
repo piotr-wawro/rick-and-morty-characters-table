@@ -9,7 +9,12 @@ const TableHeader = ({onCheckboxClick, checkboxChecked}: TableHeaderProps) => {
     return (
         <div className={styles.container}>
             <div className={styles.checkboxContainer}>
-                <input className={styles.checkbox} type='checkbox' onChange={onCheckboxClick} checked={checkboxChecked} />
+                <input
+                    className={styles.checkbox}
+                    type='checkbox'
+                    onChange={onCheckboxClick}
+                    checked={checkboxChecked}
+                />
             </div>
 
             <div className={styles.headerContainer}>

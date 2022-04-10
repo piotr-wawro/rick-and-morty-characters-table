@@ -5,16 +5,28 @@
 
     width: 140px;
     box-sizing: border-box;
-    background-color: #fff;
+    background-color: var(--primary-white);
 
     border: 1px solid var(--secondary-blue-pale-40);
     border-radius: 5px;
+    overflow: hidden;
 }
 
 .iconBox {
     width: 20px;
     height: 20px;
     padding: 9px 12px;
+
+    cursor: pointer;
+    user-select: none;
+}
+
+.iconBox:hover {
+    filter: brightness(1.25);
+}
+
+.iconBox:active {
+    filter: brightness(0.75);
 }
 
 .icon {
@@ -22,8 +34,9 @@
     height: 100%;
 }
 
-.text {
+.searchInput {
     width: 0;
+    height: 100%;
     flex-grow: 1;
 
     font-size: 14px;
@@ -35,11 +48,11 @@
     border: none;
     outline: none;
 
-    color: var(--primary-anthracite-80);
     font-family: 'Oswald', sans-serif;
+    color: var(--primary-anthracite-80);
     font-weight: 400;
 }
 
-.text::placeholder {
+.searchInput::placeholder {
     color: var(--primary-anthracite-50);
 }

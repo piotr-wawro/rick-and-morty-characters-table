@@ -8,6 +8,16 @@
 
     border: 1px solid #0000005a;
     border-radius: 5px;
+
+    cursor: pointer;
+}
+
+.container:hover {
+    filter: brightness(1.25);
+}
+
+.container:active {
+    filter: brightness(0.75);
 }
 
 .redContainer {
@@ -38,7 +48,7 @@
     margin: 0;
     padding-right: 16px;
 
-    color: #fff;
+    color: var(--primary-white);
     font-family: 'Oswald', sans-serif;
     font-weight: 500;
 }

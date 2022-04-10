@@ -1,31 +1,22 @@
-import React, { useEffect, useMemo, useState } from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
+import { useEffect, useMemo, useState } from 'react';
 import styles from './App.module.css';
-import Select from 'components/select/Select';
 
 import edit from 'icons/edit.svg'
 import remove from 'icons/remove.svg'
-import PageButton from 'components/page-button/PageButton';
 
-import a from 'icons/arrowLeft.svg'
 import PageSelector from 'components/page-selector/PageSelector';
-import Avatar from 'components/avatar/Avatar';
-import per from 'icons/300.png'
-import TableRow from 'components/table-row/TableRow';
-import TableHeader from 'components/table-header/TableHeader';
 import Table from 'components/table/Table';
 import Search from 'components/search/Search';
 import SelectOrigin from 'components/select/SelectOrigin';
 import SelectSpecies from 'components/select/SelectSpecies';
 import SelectStatus from 'components/select/SelectStatus';
 import Button from 'components/button/Button';
+import ChangeStatusBox from 'components/change-status-modal/ChangeStatusModal';
 import { useGetCharactersMutation } from 'api/rickAndMortyApi';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { selectFilter, selectStatus, Status } from 'app/filterSlice';
 import { selectCurrnetPage } from 'app/pageSelectorSlice';
 import { selectSelected } from 'app/selectionSlice';
-import ChangeStatusBox from 'components/change-status-box/ChangeStatusBox';
 import { overrideStatus } from 'app/statusSlice';
 
 function App() {
@@ -85,29 +76,29 @@ function App() {
             <p className={styles.header}>Characters</p>
 
             <div className={styles.panel}>
-                <div className={styles.filter}>
+                <div className={styles.filterBox}>
                     <Search />
-                    <div className={styles.select}>
+                    <div className={styles.selectBox}>
                         <SelectSpecies />
                         <SelectOrigin />
                         <SelectStatus />
                     </div>
                 </div>
-                <div className={styles.buttons}>
+                <div className={styles.buttonBox}>
                     {selectedCharactersIds.length < 2 && (
                         <Button color='blue' image={edit} text='Change status' onClick={() => {setChangeStatusVisible(true)}}/>
                     )}
-                    <Button color='red' image={remove} text='Change status' />
+                    <Button color='red' image={remove} text='Remove characters' />
                 </div>
             </div>
 
-            <div className={styles.table}>
+            <div className={styles.tableBox}>
                 {getCharactersStatus.isSuccess && (
                     <Table data={getCharactersStatus.data.data.characters.results} />
                 )}
             </div>
 
-            <div className={styles.pageSelector}>
+            <div className={styles.pageSelectorBox}>
                 <PageSelector />
             </div>
         </div>
