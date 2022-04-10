@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "//rick-and-morty-characters-table/static/css/main.b9d58a40.css",
+    "main.js": "//rick-and-morty-characters-table/static/js/main.e24814ff.js",
+    "static/media/remove.svg": "//rick-and-morty-characters-table/static/media/remove.ef08dd4675f7cb56752f11a7b5e65fdf.svg",
+    "static/media/edit.svg": "//rick-and-morty-characters-table/static/media/edit.9c2b262339bdc65b14a8c442a27950ef.svg",
+    "static/media/unknown.svg": "//rick-and-morty-characters-table/static/media/unknown.afbe511839fac72cbcc4168b06459675.svg",
+    "index.html": "//rick-and-morty-characters-table/index.html",
+    "static/media/dead.svg": "//rick-and-morty-characters-table/static/media/dead.580eabf2851d9abe790553e52d09b663.svg",
+    "static/media/search.svg": "//rick-and-morty-characters-table/static/media/search.5ae5fcdf6f51703a42a7169a9abb13ba.svg",
+    "static/media/alive.svg": "//rick-and-morty-characters-table/static/media/alive.8cda6f557e413653b15d6cf851db632e.svg",
+    "static/media/arrowRight.svg": "//rick-and-morty-characters-table/static/media/arrowRight.99cdf94f8d10604f4b13c8569a5b7c4d.svg",
+    "static/media/arrowLeft.svg": "//rick-and-morty-characters-table/static/media/arrowLeft.20949e0512f3290899d0964a5fc372b7.svg",
+    "static/media/arrow.svg": "//rick-and-morty-characters-table/static/media/arrow.b61f45f8e5657e9e515aafa679ae0ad0.svg",
+    "main.b9d58a40.css.map": "//rick-and-morty-characters-table/static/css/main.b9d58a40.css.map",
+    "main.e24814ff.js.map": "//rick-and-morty-characters-table/static/js/main.e24814ff.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b9d58a40.css",
+    "static/js/main.e24814ff.js"
+  ]
+}
