@@ -7,7 +7,7 @@ export interface GetCharactersResult {
                 pages: number,
             },
             results: Character[]
-        }
+        } | null
     }
 }
 

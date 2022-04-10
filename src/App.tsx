@@ -43,7 +43,7 @@ function App() {
             return Status.NONE
         }
         else if(status[selectedCharactersIds[0]] === undefined) {
-            return (getCharacters.data?.data.characters.results.find(e => parseInt(e.id) === selectedCharactersIds[0])?.status) ?
+            return (getCharacters.data?.data.characters?.results.find(e => parseInt(e.id) === selectedCharactersIds[0])?.status) ?
             getCharacters.data.data.characters.results.find(e => parseInt(e.id) === selectedCharactersIds[0])?.status as Status:
             Status.NONE
         }
@@ -99,7 +99,7 @@ function App() {
 
             <div className={styles.tableBox}>
                 {getCharacters.isSuccess && (
-                    <Table data={getCharacters.data.data.characters.results} />
+                    <Table data={getCharacters.data.data.characters?.results || []} />
                 )}
             </div>
 

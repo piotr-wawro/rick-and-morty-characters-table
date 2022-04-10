@@ -40,7 +40,13 @@ export const pageSelectorSlice = createSlice({
         })
         .addMatcher(rickAndMortyApi.endpoints.getCharacters.matchFulfilled,
             (state, action) => {
-                state.pageCount = action.payload.data.characters.info.pages
+                if(action.payload.data.characters) {
+                    state.pageCount = action.payload.data.characters.info.pages
+                }
+                else {
+                    state.pageCount = 0
+                    state.currentPage = 0
+                }
             }
         )
     }
